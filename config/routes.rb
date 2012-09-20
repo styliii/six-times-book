@@ -1,4 +1,6 @@
 Sixtimesbook::Application.routes.draw do
+  resources :users
+
   resources :commitments
 
   resources :entries
