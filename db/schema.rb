@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920063245) do
+ActiveRecord::Schema.define(:version => 20120920064515) do
 
   create_table "commitments", :force => true do |t|
     t.string   "description"
