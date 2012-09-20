@@ -11,6 +11,7 @@
 
 <% @entries.each do |entry| %>
   <tr>
+    <td><%= entry.commitment.sanskrit %></td>
     <td><%= entry.positive %></td>
     <td><%= entry.negative %></td>
     <td><%= link_to 'Show', entry %></td>

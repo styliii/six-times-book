@@ -25,6 +25,7 @@ class EntriesController < ApplicationController
   # GET /entries/new.json
   def new
     @entry = Entry.new
+    @commitment = @entry.next_commitment
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +41,12 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
+    # raise params.inspect
     @entry = Entry.new(params[:entry])
 
     respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        format.html { redirect_to entries_path, notice: 'Entry was successfully created.' }
         format.json { render json: @entry, status: :created, location: @entry }
       else
         format.html { render action: "new" }

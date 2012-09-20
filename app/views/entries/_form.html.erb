@@ -19,6 +19,7 @@
     <%= f.label :negative %><br />
     <%= f.text_field :negative %>
   </div>
+  <%= f.hidden_field :commitment_id, :value => @commitment.id %>
   <div class="actions">
     <%= f.submit %>
   </div>
