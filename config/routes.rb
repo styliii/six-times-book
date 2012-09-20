@@ -6,10 +6,9 @@ Sixtimesbook::Application.routes.draw do
   root :to => "users#new"
 
   resources :users
-
   resources :commitments
-
   resources :entries
+  resources :sessions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
