@@ -1,8 +1,11 @@
 class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
+  include ApplicationHelper
+  
   def index
-    @entries = Entry.all
+    # raise params.inspect
+    @entries = current_user.entries
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +27,7 @@ class EntriesController < ApplicationController
   # GET /entries/new
   # GET /entries/new.json
   def new
-    @entry = Entry.new
+    @entry = current_user.entries.new
     @commitment = @entry.next_commitment
 
     respond_to do |format|
@@ -42,7 +45,7 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     # raise params.inspect
-    @entry = Entry.new(params[:entry])
+    @entry = current_user.entries.new(params[:entry])
 
     respond_to do |format|
       if @entry.save
