@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
   
   def index
     # raise params.inspect
-    @entries = current_user.entries
+    @entries = current_user.entries(:order => 'created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
