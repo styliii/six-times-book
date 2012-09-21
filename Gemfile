@@ -15,6 +15,7 @@ end
 
 gem "twitter-bootstrap-rails"
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'jquery-tablesorter'
 
 # Gems used only for assets and not required
 # in production environments by default.

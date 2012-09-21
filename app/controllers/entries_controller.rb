@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
   
   def index
     # raise params.inspect
-    @entries = current_user.entries
+    @entries = current_user.entries(:order => 'created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,8 +27,10 @@ class EntriesController < ApplicationController
   # GET /entries/new
   # GET /entries/new.json
   def new
-    @entry = current_user.entries.new
+    # raise params.inspect
+
     @commitment = current_user.next_commitment
+    @entry = current_user.entries.new
 
     respond_to do |format|
       format.html # new.html.erb
