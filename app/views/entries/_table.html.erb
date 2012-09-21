@@ -1,0 +1,47 @@
+
+
+<% content_for :js do %>
+
+<script>
+
+
+$(function() { 
+  // call the tablesorter plugin 
+  $('#entries').tablesorter({ 
+    sortList: [[3,1]]
+  }); 
+
+});
+
+</script>
+<% end %>
+
+<table class="table table-bordered tablesorter" id="entries">
+  <thead>
+    <tr>
+      <th>Commitment</th>
+      <th>Positive</th>
+      <th>Negative</th>
+      <th>Created</th>
+      <th></th>
+    </tr>
+  </thead>
+
+<% @entries.each do |entry| %>
+  <tr>
+    <td><%= entry.commitment.sanskrit.titleize %></td>
+    <td><%= entry.positive %></td>
+    <td><%= entry.negative %></td>
+    <td>
+      <span class="hidden"><%= entry.created_at %></span>
+      <%= time_ago_in_words(entry.created_at)%> ago
+    </td>
+    <td><%= link_to 'delete', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Entry', new_entry_path %>
+

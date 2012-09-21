@@ -5,6 +5,8 @@ Sixtimesbook::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "entries#new"
 
+  match 'entries/from_today' => 'entries#from_today', :as => 'from_today_entries'
+
   resources :users
   resources :commitments
   resources :entries

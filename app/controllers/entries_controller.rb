@@ -5,13 +5,24 @@ class EntriesController < ApplicationController
   
   def index
     # raise params.inspect
-    @entries = current_user.entries(:order => 'created_at DESC')
+    @entries = current_user.entries
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @entries }
     end
   end
+
+  def from_today
+    # raise params.inspect
+    @entries = current_user.entries.where('Date(created_at) = ?', Date.today)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @entries }
+    end
+  end
+
 
   # GET /entries/1
   # GET /entries/1.json
