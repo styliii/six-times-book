@@ -27,10 +27,12 @@ class User < ActiveRecord::Base
   end
   
   def next_commitment    
-    unless self.previous_commitment.nil?
-      Commitment.find(self.previous_commitment.id+1)
-    else
+    if self.previous_commitment.nil?
       Commitment.first
+    elsif self.previous_commitment == Commitment.last
+      Commitment.first
+    else
+      Commitment.find(self.previous_commitment.id+1)
     end
   end
   
