@@ -1,0 +1,20 @@
+div.navbar h3{
+	float: left;
+}
+
+div.navbar ul.user-nav {
+	float: right;
+	margin: 10px 0;
+}
+
+div.row-fluid {
+	margin: 30px;
+}
+
+div.container div.row div.span4 {
+	margin-left:12%;
+}
+
+div.span4.offset4.well form input {
+	width: 100%;
+}
