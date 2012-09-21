@@ -39,55 +39,47 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-
-          </a>
           <h3><%= link_to "Six Times Book", root_url %></h3>
-
-            <ul class="nav pull-right">
+          <ul class="user-nav nav pull-right">
               <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-home"></i></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to new_entry_path do %>                     
-                    <i class="icon-pencil"></i>New Entry
-                    <% end %></li>
-                  <li><%= link_to entries_path do %>                     
-                    <i class="icon-list"></i>My Entries
-                    <% end %></li>
-                  <li><a href="modals.html#settings"><i class="icon-cogs"></i>Settings</a></li>
-                  <li><%= link_to log_out_path do %>                     
-                    <i class="icon-signout"></i>Sign Out
-                    <% end %></li>
+                  <% if current_user %>
+                    <li><%= link_to new_entry_path do %>                     
+                      <i class="icon-pencil"></i>New Entry
+                      <% end %>
+                    </li>
+                    <li><%= link_to entries_path do %>                     
+                      <i class="icon-list"></i>My Entries
+                      <% end %></li>
+                    <li><a href="modals.html#settings"><i class="icon-cogs"></i>Settings</a></li>
+                    <li><%= link_to log_out_path do %>                     
+                      <i class="icon-signout"></i>Log Out
+                      <% end %>
+                     </li>
+                  <% else %>
+                    <li><%= link_to "Log In",log_in_path %></li>
+                    <li><%= link_to "Sign Up",sign_up_path %></li>
+                  <% end %>       
                 </ul>
               </li>
             </ul>
-
         </div>
       </div>
     </div>
-    <div id="user_nav">
-      <% if current_user %>
-        Logged in as <%= current_user.email %>
-        <%= link_to "Log out", log_out_path %>
-      <% else %>
-        <%= link_to "Sign up", sign_up_path %> or
-        <%= link_to "log in", log_in_path %>
-      <% end %>
-    </div>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Links</li>
-              <li><%= link_to "New Entry", new_entry_path  %></li>
-              <li><%= link_to "Today's Entries", from_today_entries_path  %></li>
-              <li><%= link_to "Yamas and Niyamas", commitments_path  %></li>
-              <li><a href="http://www.iamyoustudio.com/blog" target="_blank">I.AM.YOU Blog</a></li>
-            </ul>
-          </div><!--/.well -->
+          <% if current_user %>
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+                <li class="nav-header">Links</li>
+                <li><%= link_to "New Entry", new_entry_path  %></li>
+                <li><%= link_to "Today's Entries", from_today_entries_path  %></li>
+                <li><%= link_to "Yamas and Niyamas", commitments_path  %></li>
+                <li><a href="http://www.iamyoustudio.com/blog" target="_blank">I.AM.YOU Blog</a></li>
+              </ul>
+            </div><!--/.well -->
+          <% end %>  
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
