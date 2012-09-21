@@ -1,12 +1,11 @@
-<h1>Listing entries</h1>
+<h1>My Entries</h1>
 
-<table>
+<table class="table table-bordered">
   <tr>
     <th>Commitment</th>
     <th>Positive</th>
     <th>Negative</th>
-    <th></th>
-    <th></th>
+    <th>Created</th>
     <th></th>
   </tr>
 
@@ -15,9 +14,8 @@
     <td><%= entry.commitment.sanskrit %></td>
     <td><%= entry.positive %></td>
     <td><%= entry.negative %></td>
-    <td><%= link_to 'Show', entry %></td>
-    <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-    <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= time_ago_in_words(entry.created_at)%> ago</td>
+    <td><%= link_to 'delete', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

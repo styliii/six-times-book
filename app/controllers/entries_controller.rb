@@ -27,8 +27,10 @@ class EntriesController < ApplicationController
   # GET /entries/new
   # GET /entries/new.json
   def new
-    @entry = current_user.entries.new
+    # raise params.inspect
+
     @commitment = current_user.next_commitment
+    @entry = current_user.entries.new
 
     respond_to do |format|
       format.html # new.html.erb
