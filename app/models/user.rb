@@ -26,5 +26,20 @@ class User < ActiveRecord::Base
     end
   end
   
+  def next_commitment    
+    unless self.previous_commitment.nil?
+      Commitment.find(self.previous_commitment.id + 1)
+    else
+      Commitment.first
+    end
+  end
+  
+  def previous_commitment
+    unless self.entries.empty? 
+      self.entries.last.commitment 
+    else
+      nil
+    end
+  end
   
 end

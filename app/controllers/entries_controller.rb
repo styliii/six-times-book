@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
-  include ApplicationHelper
+  before_filter :authorize
   
   def index
     # raise params.inspect
@@ -28,7 +28,7 @@ class EntriesController < ApplicationController
   # GET /entries/new.json
   def new
     @entry = current_user.entries.new
-    @commitment = @entry.next_commitment
+    @commitment = current_user.next_commitment
 
     respond_to do |format|
       format.html # new.html.erb

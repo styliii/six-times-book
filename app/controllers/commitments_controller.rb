@@ -1,4 +1,5 @@
 class CommitmentsController < ApplicationController
+
   # GET /commitments
   # GET /commitments.json
   def index
