@@ -15,8 +15,7 @@ class EntriesController < ApplicationController
 
   def from_today
     # raise params.inspect
-    @entries = current_user.entries.where('Date(created_at) = ?', Date.today)
-
+    @entries = current_user.entries.find(:all, :conditions => [" created_at between ? AND ?", Time.zone.now.beginning_of_day, Time.zone.now.end_of_day])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @entries }
